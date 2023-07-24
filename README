@@ -1,0 +1,67 @@
+Each square on the board has a cartesian coordinate
+
+Board                                  Cartesian coordinates
+a8  b8  c8  d8  e8  f8  g8  h8         (0,0) (1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0)
+a7  b7  c7  d8  e7  f7  g7  h7         (0,1) (1,1) (2,1) (3,1) (4,1) (5,1) (6,1) (7,1)
+a6  b6  c6  d8  e6  f6  g6  h6         (0,2) (1,2) (2,2) (3,2) (4,2) (5,2) (6,2) (7,2)
+a5  b5  c5  d8  e5  f5  g5  h5         (0,3) (1,3) (2,3) (3,3) (4,3) (5,3) (6,3) (7,3)
+a4  b4  c4  d8  e4  f4  g4  h4         (0,4) (1,4) (2,4) (3,4) (4,4) (5,4) (6,4) (7,4)
+a3  b3  c3  d8  e3  f3  g3  h3         (0,5) (1,5) (2,5) (3,5) (4,5) (5,5) (6,5) (7,5)
+a2  b2  c2  d8  e2  f2  g2  h2         (0,6) (1,6) (2,6) (3,6) (4,6) (5,6) (6,6) (7,6)
+a1  b1  c1  d8  e1  f1  g1  h1         (0,7) (1,7) (2,7) (3,7) (4,7) (5,7) (6,7) (7,7)
+
+***** 
+NOTE: It is done this way because in pygame, the top-left coordinate of the window is (0,0)
+and the game starts with the white pieces at the bottom of the screen (white_pov = True)
+*****
+
+Each square on the board has a 2-character string
+
+String      Meaning
+--          empty square
+-e          en passant square
+P-          white pawn
+p-          black pawn
+N-          white knight
+n-          black knight
+B-          white bishop
+b-          black bishop
+Q-          white queen
+q-          black queen
+R+/R-       white rook
+r+/r-       black rook
+K+/K-       white king
+k+/k-       black king
+
+*****
+NOTE: '+' means this piece has not moved from its starting square
+This is used for kings and rooks to keep track of castling privileges
+*****
+
+The position is an 8x8 list of 2-character strings
+For example, the opening position would be:
+
+[
+    ['r+','n-','b-','q-','k+','b-','n-','r+'],
+    ['p-','p-','p-','p-','p-','p-','p-','p-'],
+    ['--','--','--','--','--','--','--','--'],
+    ['--','--','--','--','--','--','--','--'],
+    ['--','--','--','--','--','--','--','--'],
+    ['--','--','--','--','--','--','--','--'],
+    ['P-','P-','P-','P-','P-','P-','P-','P-'],
+    ['R+','N-','B-','Q-','K+','B-','N-','R+']
+]
+
+White opening with e4 would mean moving the piece on (4,6) to (4,4)
+which would result in the following position:
+
+[
+    ['r+','n-','b-','q-','k+','b-','n-','r+'],
+    ['p-','p-','p-','p-','p-','p-','p-','p-'],
+    ['--','--','--','--','--','--','--','--'],
+    ['--','--','--','--','--','--','--','--'],
+    ['--','--','--','--','P-','--','--','--'],
+    ['--','--','--','--','-e','--','--','--'],
+    ['P-','P-','P-','P-','--','P-','P-','P-'],
+    ['R+','N-','B-','Q-','K+','B-','N-','R+']
+]
